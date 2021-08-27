@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1000207910429",
+    "project_id": "phisiotips",
+    "storage_bucket": "phisiotips.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000207910429:android:178b19edbbbc42778d68f4",
+        "android_client_info": {
+          "package_name": "com.example.phisiotips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000207910429-5mk7pq68f0ua6lesi0718hej9f1f16bd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phisiotips",
+            "certificate_hash": "010aa16fb71f0abbdc679a8313cb0c12acbaed1a"
+          }
+        },
+        {
+          "client_id": "1000207910429-il2pnf7fmaiuu0noim0uecm7ha2aobmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZhgneHYr8mc1IViTTgD0KdYD_pfdP36k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000207910429-il2pnf7fmaiuu0noim0uecm7ha2aobmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
