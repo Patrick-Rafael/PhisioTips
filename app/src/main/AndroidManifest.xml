@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhisioTips">
-        <activity android:name=".activity.activity.MainActivity">
+        <activity android:name=".activity.activity.ActivityCadastro"></activity>
+        <activity android:name=".activity.activity.MainActivity"></activity>
+        <activity android:name=".activity.activity.ActivityLogin" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

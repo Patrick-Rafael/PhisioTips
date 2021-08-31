@@ -46,17 +46,7 @@ public class MainActivity extends AppCompatActivity{
         usuario.signOut();
     }
 
-    // Verificar usuario logado
-    public void verificaUsuarioLogado(View view) {
-        if (usuario.getCurrentUser() != null) {
-            Log.i("CreateUser", "Sucesso ao logar");
 
-
-        } else {
-            Log.i("CreateUser", "Usuario Deslogado");
-        }
-
-    }
 
 
     //Validar Campos Vazios
