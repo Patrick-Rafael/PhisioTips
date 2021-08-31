@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.phisiotips.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
@@ -39,27 +40,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-// Cadastrar Usuario 
-    public void enviar(View view) {
 
-        String email = textEmail.getText().toString();
-        String senha = textSenha.getText().toString();
+    //Deslogar Usuario
+    public void deslogarUsuario(View view) {
+        usuario.signOut();
+    }
 
-        usuario.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.i("CreateUser", "Sucesso ao cadastrar");
+    // Verificar usuario logado
+    public void verificaUsuarioLogado(View view) {
+        if (usuario.getCurrentUser() != null) {
+            Log.i("CreateUser", "Sucesso ao logar");
 
-                } else {
-                    Log.i("CreateUser", "Falha ao cadastrar");
-                }
 
-            }
-        });
-
+        } else {
+            Log.i("CreateUser", "Usuario Deslogado");
+        }
 
     }
 
+
+    //Validar Campos Vazios
+    /*public Boolean validarCampos(String email, String senha ){
+
+        Boolean camposValidados = true;
+
+        if(email == null || email.equals("")){
+            camposValidados = false;
+
+        }else if ( senha == null || senha.equals("")){
+            camposValidados = false
+        }
+
+    }*/
 
 }
