@@ -1,37 +1,80 @@
 package com.example.phisiotips.activity.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phisiotips.R;
+import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
+import com.example.phisiotips.activity.activity.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class ActivityLogin extends AppCompatActivity {
 
-    private FirebaseAuth usuario = FirebaseAuth.getInstance();
     private TextInputEditText textEmail;
     private TextInputEditText textSenha;
     private TextView textCadastro;
+    private Button botaoLogin;
+    private Usuario usuarios;
+    private FirebaseAuth autenticacao;
+    private FirebaseAuth autenticacaoAuto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        verificarUsuarioLogado();
+
         textCadastro = findViewById(R.id.textCadastro);
         textEmail = findViewById(R.id.textEmail);
         textSenha = findViewById(R.id.textSenha);
+        botaoLogin = findViewById(R.id.buttonLogin);
+
+        botaoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String email = textEmail.getText().toString();
+                String senha = textSenha.getText().toString();
+
+                if (!email.isEmpty()) {
+                    if (!senha.isEmpty()) {
+
+                        usuarios = new Usuario();
+                        usuarios.setEmail(email);
+                        usuarios.setSenha(senha);
+                        validarlogin();
+
+
+                    } else {
+                        Toast.makeText(ActivityLogin.this, "Preencha a senha!", Toast.LENGTH_LONG).show();
+                    }
+
+                } else {
+                    Toast.makeText(ActivityLogin.this, "Preencha o E-mail!", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
     }
 
 
@@ -44,50 +87,62 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
-    // Verificar usuario logado
-    public void verificaUsuarioLogado(View view) {
-        if (usuario.getCurrentUser() != null) {
-            Log.i("CreateUser", "Sucesso ao logar");
 
+    public void validarlogin() {
 
-        } else {
-            Log.i("CreateUser", "Usuario Deslogado");
-        }
-
-    }
-
-    //Logar Usuario e levar para a tela principal
-
-    public void logarUsuario(View view) {
-        String email = textEmail.getText().toString();
-        String senha = textSenha.getText().toString();
-
-
-        /*if(email == null || email.equals("")) {
-            Toast.makeText(getApplicationContext(), "Preencha os campos", Toast.LENGTH_LONG);
-
-        }else if ( senha == null || senha.equals("")){
-            Toast.makeText(getApplicationContext(),"Preencha a senha",Toast.LENGTH_LONG);
-        }*/
-
-        usuario.signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+        autenticacao.signInWithEmailAndPassword(
+                usuarios.getEmail(),
+                usuarios.getSenha()
+        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(Task<AuthResult> task) {
-
+            public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Log.i("signIn", "Sucesso ao logar ");
+
+                    abrirPrincipal();
 
                 } else {
-                    Log.i("signIn", "Erro ao logar");
+                    String excecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthInvalidUserException e) {
+                        excecao = "Usuario não está cadastrado";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        excecao = "E-mail e senha não corresponde a usuario cadastrado ";
+
+                    } catch (Exception e) {
+                        excecao = "Erro ao cadastrar usuario" + e.getMessage();
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(ActivityLogin.this, excecao, Toast.LENGTH_LONG).show();
 
                 }
+
 
             }
         });
 
+
+    }
+
+    public void abrirPrincipal() {
         Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
         startActivity(intent);
         finish();
+
+    }
+
+    public void verificarUsuarioLogado() {
+
+        autenticacaoAuto = ConfiguracaoFireBase.getFireBaseAutenticacao();
+
+        if (autenticacaoAuto.getCurrentUser() != null) {
+
+            Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
+            startActivity(intent);
+
+        }
+
 
     }
 
