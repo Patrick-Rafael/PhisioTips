@@ -48,6 +48,8 @@ public class ActivityLogin extends AppCompatActivity {
         textSenha = findViewById(R.id.textSenha);
         botaoLogin = findViewById(R.id.buttonLogin);
 
+        //Faz verificação das execoções e  acessa a pagina principal
+
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +90,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
 
+    //Valida o login do usuario
     public void validarlogin() {
 
         autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
@@ -125,6 +128,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
+    //Levar para a MainActivity
     public void abrirPrincipal() {
         Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
         startActivity(intent);
@@ -132,6 +136,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
+    //Verifica o usuario
     public void verificarUsuarioLogado() {
 
         autenticacaoAuto = ConfiguracaoFireBase.getFireBaseAutenticacao();
@@ -140,6 +145,7 @@ public class ActivityLogin extends AppCompatActivity {
 
             Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
             startActivity(intent);
+
 
         }
 
