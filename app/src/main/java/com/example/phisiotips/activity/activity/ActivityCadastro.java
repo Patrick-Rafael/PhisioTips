@@ -29,7 +29,7 @@ public class ActivityCadastro extends AppCompatActivity {
     private Button botaoCadastro;
     private Usuario usuario;
 
-
+// Cadastrar Usuario
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

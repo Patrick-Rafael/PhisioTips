@@ -1,6 +1,7 @@
 package com.example.phisiotips.activity.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button botaoSair;
     private FirebaseAuth autenticacao;
+    private RecyclerView  recyclerViewMain;
 
 
     @Override
@@ -27,11 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-
-
         botaoSair = findViewById(R.id.buttonCadastro);
+        recyclerViewMain = findViewById(R.id.recyclerViewMain);
 
-        botaoSair.setOnClickListener(new View.OnClickListener() {
+
+
+// Botão Sair
+        /*botaoSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 autenticacao.signOut();
@@ -41,11 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 finish();
 
             }
-        });
+        });*/
 
 
     }
-
-
 
 }
