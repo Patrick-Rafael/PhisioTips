@@ -1,4 +1,4 @@
-package com.example.phisiotips.activity.activity;
+package com.example.phisiotips.activity.activity.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
