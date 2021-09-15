@@ -15,6 +15,16 @@ Um app de enquetes, perguntas e respostas criado para a disciplina  de Dispositi
 ## Tela com o item adicionado
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado.jpeg"width="230" height="486" >
 
+### Tecnologias Usadas
 
+- Java
+- Android Studio
+- FireBase
+
+### Autor
+
+Patrick Rafael
+
+https://www.linkedin.com/in/patrick-rafael-a8a3661a8/
 
 
