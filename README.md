@@ -14,7 +14,7 @@ Um app de enquetes, perguntas e respostas criado para a disciplina  de Dispositi
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionar.jpeg">
 
 ## Tela com o itema adicionado
-<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado.jpeg">
+#### <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado.jpeg">
 
 
 
