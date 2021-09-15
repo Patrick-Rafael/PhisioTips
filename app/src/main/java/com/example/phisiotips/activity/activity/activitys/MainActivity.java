@@ -16,6 +16,7 @@ import com.example.phisiotips.R;
 import com.example.phisiotips.activity.activity.adpter.Adapter;
 import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
 import com.example.phisiotips.activity.activity.model.MainEnqutes;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewMain;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private List<MainEnqutes> listaEnquete = new ArrayList<>();
+    private FloatingActionButton buttonAdicionar;
 
 
     @Override
@@ -42,16 +44,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+        //Redireciona para a pagina de adiconar
+        buttonAdicionar = findViewById(R.id.buttonAdicionar);
+
+        buttonAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, AdicionarActivity.class);
+                startActivity(intent);
+                finish();
+
+
+            }
+        });
+
+        // autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
         //botaoSair = findViewById(R.id.buttonCadastro);
+
         recyclerViewMain = findViewById(R.id.recyclerViewMain);
 
 
         //autenticacao.signOut();
-
-        //Criar filmes
-        //this.criarEnquetes();
-
 
         //Configurar Adater
         Adapter adapter = new Adapter(listaEnquete);
@@ -105,29 +119,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    //Criar Lista de Enquetes
-   /* public void criarEnquetes() {
-
-        MainEnqutes enquete = new MainEnqutes("#LowCarb", "Pouco carbohidrato pra ficar giga ");
-        this.listaEnquete.add(enquete);
-
-        enquete = new MainEnqutes("#BotaOShape", "Ficar giga usando veneno e tudo mais");
-        this.listaEnquete.add(enquete);
-
-        enquete = new MainEnqutes("#BotaOShape", "Ficar giga usando veneno e tudo mais");
-        this.listaEnquete.add(enquete);
-
-        enquete = new MainEnqutes("#BotaOShape", "Ficar giga usando veneno e tudo mais");
-        this.listaEnquete.add(enquete);
-
-        enquete = new MainEnqutes("#BotaOShape", "Ficar giga usando veneno e tudo mais");
-        this.listaEnquete.add(enquete);
-
-        enquete = new MainEnqutes("#BotaOShape", "Ficar giga usando veneno e tudo mais");
-        this.listaEnquete.add(enquete);
-
-
-    }*/
 
 }

@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhisioTips">
-        <activity android:name=".activity.activity.activitys.ActivityCadastro"></activity>
-        <activity android:name=".activity.activity.activitys.MainActivity"></activity>
-        <activity android:name=".activity.activity.activitys.ActivityLogin" >
-
+        <activity android:name=".activity.activity.activitys.AdicionarActivity"></activity>
+        <activity android:name=".activity.activity.activitys.ActivityCadastro" />
+        <activity android:name=".activity.activity.activitys.MainActivity" />
+        <activity android:name=".activity.activity.activitys.ActivityLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
