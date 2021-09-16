@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //private Button botaoSair;
-    //private FirebaseAuth autenticacao;
+    private FirebaseAuth autenticacao;
     private RecyclerView recyclerViewMain;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private List<MainEnqutes> listaEnquete = new ArrayList<>();

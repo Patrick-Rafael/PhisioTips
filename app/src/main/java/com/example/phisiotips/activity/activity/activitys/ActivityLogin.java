@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,8 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        verificarUsuarioLogado();
+
+        //verificarUsuarioLogado();
 
         textCadastro = findViewById(R.id.textCadastro);
         textEmail = findViewById(R.id.textEmail);
@@ -77,6 +79,7 @@ public class ActivityLogin extends AppCompatActivity {
 
 
     //Levar para a activity do cadastro
+
     public void cadastro(View view) {
 
         Intent intent = new Intent(ActivityLogin.this, ActivityCadastro.class);
@@ -87,6 +90,7 @@ public class ActivityLogin extends AppCompatActivity {
 
 
     //Valida o login do usuario
+
     public void validarlogin() {
 
         autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
@@ -125,6 +129,7 @@ public class ActivityLogin extends AppCompatActivity {
     }
 
     //Levar para a MainActivity
+
     public void abrirPrincipal() {
         Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
         startActivity(intent);
@@ -132,8 +137,11 @@ public class ActivityLogin extends AppCompatActivity {
 
     }
 
+
     //Verifica o usuario
+
     public void verificarUsuarioLogado() {
+
 
         autenticacaoAuto = ConfiguracaoFireBase.getFireBaseAutenticacao();
 
