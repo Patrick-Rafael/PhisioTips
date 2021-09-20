@@ -39,7 +39,7 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        //verificarUsuarioLogado();
+        verificarUsuarioLogado();
 
         textCadastro = findViewById(R.id.textCadastro);
         textEmail = findViewById(R.id.textEmail);

@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        autenticacao = FirebaseAuth.getInstance();
+
         //Redireciona para a pagina de adiconar
         buttonAdicionar = findViewById(R.id.buttonAdicionar);
 
@@ -59,13 +64,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-        //botaoSair = findViewById(R.id.buttonCadastro);
 
         recyclerViewMain = findViewById(R.id.recyclerViewMain);
 
-
-        //autenticacao.signOut();
 
         //Configurar Adater
         Adapter adapter = new Adapter(listaEnquete);
@@ -104,20 +105,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-// Botão Sair
-        /*botaoSair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autenticacao.signOut();
-
-                Intent intent = new Intent(MainActivity.this, ActivityLogin.class);
-                startActivity(intent);
-                finish();
-
-            }
-        });*/
-
-
     }
 
+    //Infla o menu na action Bar
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    //Adiciona envento de clique nas opções
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_sair:
+                autenticacao.signOut();
+                Intent intent_sair = new Intent(MainActivity.this, ActivityLogin.class);
+                startActivity(intent_sair);
+                return true;
+
+            case R.id.menu_sobre:
+                Intent intent_sobre = new Intent(MainActivity.this, SobreActivity.class);
+                startActivity(intent_sobre);
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
