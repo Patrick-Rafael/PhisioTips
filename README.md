@@ -1,4 +1,4 @@
-# PhisioTips
+## PhisioTips
 Um app de enquetes, perguntas e respostas criado para a disciplina  de Dispositivos moveis 2.
 
 #### Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia e exercícios em geral , mantendo uma comunicação com outros usuarios e fazendo perguntas sobre diversos assuntos.
