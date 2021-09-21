@@ -12,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.phisiotips.R;
 import com.example.phisiotips.activity.activity.adpter.Adapter;
@@ -78,6 +80,42 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain.setHasFixedSize(true);
         recyclerViewMain.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
         recyclerViewMain.setAdapter(adapter);
+
+        //Evento de Click
+        recyclerViewMain.addOnItemTouchListener(
+                new ClickListener(
+                        getApplicationContext(),
+                        recyclerViewMain,
+                        new ClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                Intent intent_sair = new Intent(MainActivity.this, ComentariosActivity.class);
+                                startActivity(intent_sair);
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                                MainEnqutes enquetes = listaEnquete.get(position);
+
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Item precionado: " + enquetes.getTitulo(),
+                                        Toast.LENGTH_SHORT
+                                ).show();
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+
+                )
+        );
 
 
         //Pegando do banco de dados
