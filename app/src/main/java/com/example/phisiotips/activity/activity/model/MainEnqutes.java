@@ -1,11 +1,10 @@
 package com.example.phisiotips.activity.activity.model;
 
-import android.widget.TextView;
-
 public class MainEnqutes {
 
     String titulo;
     String resumo;
+    String chave;
 
     public MainEnqutes(){
 
@@ -30,5 +29,15 @@ public class MainEnqutes {
 
     public void setResumo(String resumo) {
         this.resumo = resumo;
+    }
+
+    public String getChave() {
+        return chave;
+
+    }
+
+    public String setChave(String chave) {
+        this.chave = chave;
+        return chave;
     }
 }

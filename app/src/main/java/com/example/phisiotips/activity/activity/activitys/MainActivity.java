@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +21,9 @@ import android.widget.Toast;
 import com.example.phisiotips.R;
 import com.example.phisiotips.activity.activity.adpter.Adapter;
 import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
+import com.example.phisiotips.activity.activity.model.Enquetes;
 import com.example.phisiotips.activity.activity.model.MainEnqutes;
+import com.example.phisiotips.activity.activity.sobre.SobreFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +39,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    //private Button botaoSair;
     private FirebaseAuth autenticacao;
     private RecyclerView recyclerViewMain;
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         autenticacao = FirebaseAuth.getInstance();
+
 
         //Redireciona para a pagina de adiconar
         buttonAdicionar = findViewById(R.id.buttonAdicionar);
@@ -90,21 +93,31 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
 
-                                Intent intent_sair = new Intent(MainActivity.this, ComentariosActivity.class);
-                                startActivity(intent_sair);
+                                MainEnqutes enquetes = listaEnquete.get(position);
+
+
+                                /*Intent intent_enviar_chave = new Intent(MainActivity.this, AdicionarComentariosActivity.class);
+                                intent_enviar_chave.putExtra("chave", enquetes.getChave());
+                                startActivity(intent_enviar_chave);*/
+
+                                Intent intent_comentarios = new Intent(MainActivity.this, ComentariosActivity.class);
+                                intent_comentarios.putExtra("chave", enquetes.getChave());
+                                startActivity(intent_comentarios);
+
 
                             }
+
 
                             @Override
                             public void onLongItemClick(View view, int position) {
 
                                 MainEnqutes enquetes = listaEnquete.get(position);
-
-                                Toast.makeText(
+                                
+                                /* Toast.makeText(
                                         getApplicationContext(),
                                         "Item precionado: " + enquetes.getTitulo(),
                                         Toast.LENGTH_SHORT
-                                ).show();
+                                ).show();*/
 
                             }
 
@@ -118,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-        //Pegando do banco de dados
+        //Pegando do banco de dados e constroi a lista
         database = FirebaseDatabase.getInstance().getReference().child("Enquetes");
 
         database.addValueEventListener(new ValueEventListener() {
@@ -128,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     MainEnqutes enquetes = dataSnapshot.getValue(MainEnqutes.class);
+
+                    //pegando chave
+                    enquetes.setChave(dataSnapshot.getKey());
+
 
                     listaEnquete.add(enquetes);
 

@@ -1,4 +1,4 @@
-package com.example.phisiotips.activity.activity.activitys;
+package com.example.phisiotips.activity.activity.model;
 
 public class Enquetes {
 

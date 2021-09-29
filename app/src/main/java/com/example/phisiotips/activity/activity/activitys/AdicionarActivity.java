@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.phisiotips.R;
-import com.example.phisiotips.activity.activity.model.Usuario;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.phisiotips.activity.activity.model.Enquetes;
+import com.example.phisiotips.activity.activity.model.MainEnqutes;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,9 +32,13 @@ public class AdicionarActivity extends AppCompatActivity {
         textResumo = findViewById(R.id.textResumo);
         buttonEnviar = findViewById(R.id.buttonEnviar);
 
+
+
         //Encaminhar para o nó do FireBase
         enqueteReferencia = FirebaseDatabase.getInstance().getReference().child("Enquetes");
 
+
+        //Envia os dados para o fireBase
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +63,9 @@ public class AdicionarActivity extends AppCompatActivity {
 
                 Enquetes enquete = new Enquetes(titulo, resumo);
 
+
                 enqueteReferencia.push().setValue(enquete);
+
 
                 Toast.makeText(AdicionarActivity.this, "Enviado com sucesso", Toast.LENGTH_LONG).show();
 

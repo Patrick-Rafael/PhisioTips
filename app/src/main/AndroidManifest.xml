@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhisioTips">
-        <activity android:name=".activity.activity.activitys.ComentariosActivity"></activity>
+        <activity android:name=".activity.activity.activitys.AdicionarComentariosActivity"></activity>
+        <activity android:name=".activity.activity.activitys.ComentariosActivity" />
         <activity android:name=".activity.activity.activitys.SobreActivity" />
         <activity android:name=".activity.activity.activitys.AdicionarActivity" />
         <activity android:name=".activity.activity.activitys.ActivityCadastro" />

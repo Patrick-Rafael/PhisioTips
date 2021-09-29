@@ -38,6 +38,9 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Esconde a ActionBar
+        getSupportActionBar().hide();
+
 
         verificarUsuarioLogado();
 
