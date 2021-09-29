@@ -1,5 +1,8 @@
-# PhisioTips
+## PhisioTips
 Um app de enquetes, perguntas e respostas criado para a disciplina  de Dispositivos moveis 2.
+
+### Objetivos
+Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia e exercícios em geral , mantendo uma comunicação com outros usuarios e fazendo perguntas sobre diversos assuntos.
 
 ## Tela de login e Cadastro
 <img src="https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Login.jpeg" width="230" height="486">  <img src="https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Cadastrar.jpeg" width="230" height="486" >
@@ -15,6 +18,12 @@ Um app de enquetes, perguntas e respostas criado para a disciplina  de Dispositi
 ## Tela com o item adicionado
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado.jpeg" width="230" height="486" >
 
+## Tela com Menu adicionado e ActionBar, botões de sair e sobre
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado%20Menu.jpeg" width="230" height="486" >
+
+## Tela com mudanças visuais
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais.jpeg" width="230" height="486" >
+ 
 ### Tecnologias Usadas
 
 - Java
