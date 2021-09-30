@@ -38,6 +38,9 @@ Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia
 - Android Studio
 - FireBase
 
+### Bibliotecas usadas
+- AboutPage
+
 ### Autor
 
 Patrick Rafael
