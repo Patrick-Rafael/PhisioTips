@@ -23,6 +23,14 @@ Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia
 
 ## Tela com mudanças visuais
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais.jpeg" width="230" height="486" >
+
+## Tela com comentários e adicionando eles
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Comentarios.jpeg" width="230" height="486" > <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adcionando%20comentario.jpeg" width="230" height="486" > 
+
+## Tela sobre o aplicativo
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Pagina_sobre.jpeg" width="230" height="486" >
+
+ 
  
 ### Tecnologias Usadas
 
