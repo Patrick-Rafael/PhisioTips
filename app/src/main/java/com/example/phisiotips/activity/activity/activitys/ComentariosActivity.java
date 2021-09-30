@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.phisiotips.R;
 import com.example.phisiotips.activity.activity.adpter.Adapter;
@@ -33,7 +35,7 @@ public class ComentariosActivity extends AppCompatActivity {
     private FloatingActionButton buttonComentarios;
     private List<Respostas> listaRespostas = new ArrayList<>();
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    private String chaveFireBase;
+    private TextView titulo;
 
 
     @Override
@@ -41,13 +43,21 @@ public class ComentariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comentarios);
 
-        buttonComentarios = findViewById(R.id.buttonComentario);
+        ids();
+
 
         //Pegando as chaves de cada item
         Bundle bundle = getIntent().getExtras();
-        String chave = bundle.getString("chave");
+        String chave = bundle.getString("Chave");
+        String textTitulo = bundle.getString("Titulo");
+        Log.i("Teste", "Chave: " + chave);
 
 
+        titulo.setText(textTitulo);
+
+
+
+        //Enviar para activity de adicionar comentarios
         buttonComentarios.setOnClickListener(v -> {
             Intent intent = new Intent(ComentariosActivity.this, AdicionarComentariosActivity.class);
             intent.putExtra("chave", chave);
@@ -74,7 +84,6 @@ public class ComentariosActivity extends AppCompatActivity {
         //Puxando a lista do Firebase e exibindo no RecyclerView
 
         database = FirebaseDatabase.getInstance().getReference().child("Enquetes").child(chave).child("Resposta");
-
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -97,6 +106,12 @@ public class ComentariosActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void ids() {
+        buttonComentarios = findViewById(R.id.buttonComentario);
+        titulo = findViewById(R.id.titulo);
     }
 
 

@@ -34,6 +34,8 @@ public class AdicionarComentariosActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String chave = bundle.getString("chave");
 
+        Log.i("Teste", "Chave: " + chave );
+
 
 
         //Encaminhar para o nó do FireBase
@@ -52,12 +54,10 @@ public class AdicionarComentariosActivity extends AppCompatActivity {
 
             Respostas respostas = new Respostas(resposta);
 
-            comentarioReferenica.push().setValue(resposta);
+            comentarioReferenica.push().setValue(respostas);
 
             Toast.makeText(AdicionarComentariosActivity.this, "Resposta Enviada", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(AdicionarComentariosActivity.this, ComentariosActivity.class);
-            startActivity(intent);
             finish();
 
         } else {

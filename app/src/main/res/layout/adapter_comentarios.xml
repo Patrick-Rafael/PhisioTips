@@ -15,16 +15,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/user" />
 
         <TextView
             android:id="@+id/textComentario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
             android:fontFamily="sans-serif-black"
-            android:text="Comentario"
+            android:gravity="center_vertical"
+            android:text="Comentário"
             android:textSize="24sp"
             android:textStyle="bold" />
 

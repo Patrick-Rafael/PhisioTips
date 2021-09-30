@@ -95,15 +95,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 MainEnqutes enquetes = listaEnquete.get(position);
 
-
-                                /*Intent intent_enviar_chave = new Intent(MainActivity.this, AdicionarComentariosActivity.class);
-                                intent_enviar_chave.putExtra("chave", enquetes.getChave());
-                                startActivity(intent_enviar_chave);*/
-
                                 Intent intent_comentarios = new Intent(MainActivity.this, ComentariosActivity.class);
-                                intent_comentarios.putExtra("chave", enquetes.getChave());
+                                intent_comentarios.putExtra("Chave", enquetes.getChave());
+                                intent_comentarios.putExtra("Titulo",enquetes.getTitulo());
                                 startActivity(intent_comentarios);
-
 
                             }
 
@@ -112,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
                             public void onLongItemClick(View view, int position) {
 
                                 MainEnqutes enquetes = listaEnquete.get(position);
-                                
-                                /* Toast.makeText(
+
+                                 Toast.makeText(
                                         getApplicationContext(),
                                         "Item precionado: " + enquetes.getTitulo(),
                                         Toast.LENGTH_SHORT
-                                ).show();*/
+                                ).show();
 
                             }
 
@@ -134,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         //Pegando do banco de dados e constroi a lista
         database = FirebaseDatabase.getInstance().getReference().child("Enquetes");
 
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -143,7 +139,9 @@ public class MainActivity extends AppCompatActivity {
                     MainEnqutes enquetes = dataSnapshot.getValue(MainEnqutes.class);
 
                     //pegando chave
-                    enquetes.setChave(dataSnapshot.getKey());
+                   enquetes.setChave(dataSnapshot.getKey());
+
+
 
 
                     listaEnquete.add(enquetes);
