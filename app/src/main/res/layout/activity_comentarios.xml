@@ -41,22 +41,46 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
+        android:layout_marginBottom="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonComentario"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textComentarioInputTeste"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="8dp"
+        app:boxBackgroundColor="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerComentarios">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textComentarioTeste"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Faça seu comentário" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/buttonEnvivarTeste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_icon_comentario"
-        android:text="Adicionar"
-        app:backgroundTint="@android:color/holo_green_dark"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_teste_send_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textComentarioInputTeste">
+
+    </ImageButton>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
