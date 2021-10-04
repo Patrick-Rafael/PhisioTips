@@ -16,13 +16,14 @@ Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionar.jpeg" width="230" height="486" >
 
 ## Tela com o item adicionado
-<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado.jpeg" width="230" height="486" >
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado.jpeg" width="230" height="486" >[
+
+## Tela com mudanças visuais
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais.jpeg" width="230" height="486" >
 
 ## Tela com Menu adicionado e ActionBar, botões de sair e sobre
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adicionado%20Menu.jpeg" width="230" height="486" >
 
-## Tela com mudanças visuais
-<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais.jpeg" width="230" height="486" >
 
 ## Tela com comentários e adicionando eles
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Comentarios.jpeg" width="230" height="486" > <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Adcionando%20comentario.jpeg" width="230" height="486" > 
