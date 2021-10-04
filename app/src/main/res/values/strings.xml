@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Text_hintBox_titulo">Preencha o Título</string>
     <string name="Text_hintBox_resumo">Preencha o Resumo</string>
+    <string name="Text_Descricao_Sobre">O PhisioTips é um aplicativo criado com o intuito de ajudar a comunicação entre pessoasem relação ao mundo fitness, dando a oportunidade de criar perguntar ou até mesmo enquetes, assim gerando uma atividade decomunicação entre diferentes pessoas.
+    </string>
 </resources>

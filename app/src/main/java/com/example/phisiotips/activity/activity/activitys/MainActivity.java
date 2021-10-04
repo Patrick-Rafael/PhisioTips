@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, AdicionarActivity.class);
                 startActivity(intent);
-                finish();
+
 
 
             }
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewMain.setLayoutManager(layoutManager);
         recyclerViewMain.setHasFixedSize(true);
-        recyclerViewMain.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
+        //recyclerViewMain.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
         recyclerViewMain.setAdapter(adapter);
 
         //Evento de Click

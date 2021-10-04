@@ -1,17 +1,22 @@
 package com.example.phisiotips.activity.activity.sobre;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.phisiotips.R;
+
+import mehdi.sakout.aboutpage.AboutPage;
+import mehdi.sakout.aboutpage.Element;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SobreFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class SobreFragment extends Fragment {
 
@@ -55,10 +60,34 @@ public class SobreFragment extends Fragment {
         }
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sobre, container, false);
+        Element versao = new Element();
+        versao.setTitle("Versão 1.0");
+
+        View view = new AboutPage(getActivity())
+                .setImage(R.drawable.logo)
+                .setDescription("O PhisioTips é um aplicativo criado com o intuito de ajudar a comunicação entre pessoasem relação ao mundo fitness, " +
+                        "dando a oportunidade de criar perguntar ou até mesmo enquetes, assim gerando uma atividade decomunicação entre diferentes pessoas")
+                .addGroup("Entre em contato")
+                .addEmail("PatrickRafael05@gmail.com", "Envie um e-mail")
+                .addGroup("Redes Sociais")
+                .addWebsite("https://www.linkedin.com/in/patrick-rafael-a8a3661a8/", "Linkedin")
+                .addGitHub("https://github.com/Patrick-Rafael", "GitHub")
+                .addInstagram("instagram.com/patrickrafaelborges/", "Instagran")
+                .addTwitter("https://twitter.com/PatrickRafaelb", "Twitter")
+                .addItem(versao)
+                .create();
+
+        return view;
+
+
+        // View view =  inflater.inflate(R.layout.fragment_sobre, container, false);
+        //return  view;
     }
 }

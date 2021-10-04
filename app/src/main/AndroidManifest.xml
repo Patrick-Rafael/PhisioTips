@@ -11,7 +11,7 @@
         android:theme="@style/Theme.PhisioTips">
         <activity android:name=".activity.activity.activitys.AdicionarComentariosActivity"></activity>
         <activity android:name=".activity.activity.activitys.ComentariosActivity" />
-        <activity android:name=".activity.activity.activitys.SobreActivity" />
+        <activity android:name=".activity.activity.activitys.SobreActivity"/>
         <activity android:name=".activity.activity.activitys.AdicionarActivity" />
         <activity android:name=".activity.activity.activitys.ActivityCadastro" />
         <activity android:name=".activity.activity.activitys.MainActivity" />
