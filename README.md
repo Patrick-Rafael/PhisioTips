@@ -40,8 +40,6 @@ Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia
 ## Tela do feed 2.0
 <img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/feed.jpeg" width="230" height="486">
 
-## tela adicionar 2.0
-<img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/adicionar.jpeg" width="230" height="486">
 
 ## Tela dos coméntarios e adicionando eles 2.0
 <img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/adicionar.jpeg" width="230" height="486"> <img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/comentarios.jpeg" width="230" height="486">
