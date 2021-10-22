@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.activity.activitys.ActivityCadastro"
-    android:background="@drawable/gradient_background"
 
-    >
+    android:background="@drawable/gradient_background"
+    tools:context=".activity.activity.activitys.ActivityCadastro">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
@@ -20,8 +18,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:background="#00FFFFFF"
-        android:textColorHint="#000000"
-        app:boxBackgroundColor="#000000"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="filled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00FFFFFF"
-            android:drawableRight="@drawable/ic_baseline_email_24"
-            android:hint="Digite seu Email"
+            android:hint="Email"
             android:textColor="#000000"
             android:textColorHighlight="#000000"
             android:textColorHint="#000000"
@@ -45,7 +42,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColorHint="#000000"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
@@ -57,8 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00FFFFFF"
-            android:drawableRight="@drawable/ic_baseline_lock_24"
-            android:hint="Digite sua senha"
+            android:hint="Senha"
+            android:inputType="textPassword"
             android:textColor="#000000"
             android:textColorHighlight="#000000"
             android:textColorHint="#000000" />
@@ -69,15 +67,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Cadastro"
-        app:backgroundTint="@android:color/holo_green_dark"
+        android:text="Cadastrar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/cor_dos_botões"
+        app:cornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -87,6 +87,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/muscle" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="#005A1E1E"
+        app:boxBackgroundMode="filled"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:prefixTextColor="#FFFFFF"
+        app:suffixTextColor="#FFFFFF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:hint="Nome" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

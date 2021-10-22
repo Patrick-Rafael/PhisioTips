@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     tools:context=".activity.activity.activitys.AdicionarActivity">
 
     <Button
@@ -13,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Enviar"
+        app:backgroundTint="@color/cor_dos_botões"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/textInputTitulo"
         app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="@+id/textInputTitulo"

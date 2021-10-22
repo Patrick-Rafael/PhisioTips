@@ -23,22 +23,35 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="62dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
             android:layout_weight="0"
             app:srcCompat="@drawable/user" />
 
-        <TextView
-            android:id="@+id/textComentario"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-black"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
             android:gravity="center_vertical"
-            android:text="Comentário"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Nome"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textComentario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Comentário" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

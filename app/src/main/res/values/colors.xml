@@ -7,5 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cor_dos_cards">#84fab0</color>
+    <color name="cor_dos_cards">#BCBDBD</color>
+    <color name="cor_dos_botões">#D65A31</color>
 </resources>

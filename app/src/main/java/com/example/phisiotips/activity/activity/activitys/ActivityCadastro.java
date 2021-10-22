@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.phisiotips.R;
 import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
+import com.example.phisiotips.activity.activity.helper.Base64Custon;
 import com.example.phisiotips.activity.activity.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,20 +25,20 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 public class ActivityCadastro extends AppCompatActivity {
 
     private FirebaseAuth autenticacao;
-    private TextInputEditText textEmail;
-    private TextInputEditText textSenha;
+    private TextInputEditText textEmail, textSenha, textNome;
     private Button botaoCadastro;
     private Usuario usuario;
 
-// Cadastrar Usuario
+    // Cadastrar Usuario
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        textEmail = findViewById(R.id.textEmail);
-        textSenha = findViewById(R.id.textSenha);
-        botaoCadastro = findViewById(R.id.buttonCadastro);
+        //Esconde a ActionBar
+        getSupportActionBar().hide();
+
+        ids();
 
         botaoCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,17 +46,23 @@ public class ActivityCadastro extends AppCompatActivity {
 
                 String email = textEmail.getText().toString();
                 String senha = textSenha.getText().toString();
+                String nome = textNome.getText().toString();
 
                 //Validar os campos preenchidos
 
                 if (!email.isEmpty()) {
                     if (!senha.isEmpty()) {
+                        if (!nome.isEmpty()) {
 
-                        usuario = new Usuario();
-                        usuario.setEmail(email);
-                        usuario.setSenha(senha);
-                        cadastrarUsuario();
+                            usuario = new Usuario();
+                            usuario.setEmail(email);
+                            usuario.setNome(nome);
+                            usuario.setSenha(senha);
+                            cadastrarUsuario();
 
+                        } else {
+                            Toast.makeText(ActivityCadastro.this, "Preencha o nome!", Toast.LENGTH_LONG).show();
+                        }
 
                     } else {
                         Toast.makeText(ActivityCadastro.this, "Preencha a senha!", Toast.LENGTH_LONG).show();
@@ -77,14 +84,18 @@ public class ActivityCadastro extends AppCompatActivity {
         autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
 
         autenticacao.createUserWithEmailAndPassword(
-                usuario.getEmail(), usuario.getSenha()
+                usuario.getEmail(),
+                usuario.getSenha()
         ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
 
-                    abrirLogin();
+                    String idUsuario = Base64Custon.codificarBase64(usuario.getEmail());
+                    usuario.setIdUsuario(idUsuario);
+                    usuario.salvar();
+                    levarLogin();
 
                 } else {
                     String excecao = "";
@@ -113,12 +124,20 @@ public class ActivityCadastro extends AppCompatActivity {
 
     }
 
-    public void abrirLogin() {
+
+    public void levarLogin() {
 
         Intent intent = new Intent(ActivityCadastro.this, ActivityLogin.class);
         startActivity(intent);
         finish();
+    }
 
+
+    public void ids() {
+        textEmail = findViewById(R.id.textEmail);
+        textSenha = findViewById(R.id.textSenha);
+        botaoCadastro = findViewById(R.id.buttonCadastro);
+        textNome = findViewById(R.id.textNome);
     }
 
 

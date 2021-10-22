@@ -31,6 +31,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         recyclerViewMain = findViewById(R.id.recyclerViewMain);
 
 
@@ -94,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
 
                                 MainEnqutes enquetes = listaEnquete.get(position);
+
 
                                 Intent intent_comentarios = new Intent(MainActivity.this, ComentariosActivity.class);
                                 intent_comentarios.putExtra("Chave", enquetes.getChave());
@@ -126,6 +130,9 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
+
+
+
         //Pegando do banco de dados e constroi a lista
         database = FirebaseDatabase.getInstance().getReference().child("Enquetes");
 
@@ -140,9 +147,6 @@ public class MainActivity extends AppCompatActivity {
 
                     //pegando chave
                    enquetes.setChave(dataSnapshot.getKey());
-
-
-
 
                     listaEnquete.add(enquetes);
 

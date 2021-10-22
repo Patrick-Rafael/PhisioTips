@@ -71,7 +71,7 @@ public class SobreFragment extends Fragment {
         versao.setTitle("Versão 1.0");
 
         View view = new AboutPage(getActivity())
-                .setImage(R.drawable.logo)
+                .setImage(R.drawable.muscle)
                 .setDescription("O PhisioTips é um aplicativo criado com o intuito de ajudar a comunicação entre pessoasem relação ao mundo fitness, " +
                         "dando a oportunidade de criar perguntar ou até mesmo enquetes, assim gerando uma atividade decomunicação entre diferentes pessoas")
                 .addGroup("Entre em contato")
@@ -87,7 +87,5 @@ public class SobreFragment extends Fragment {
         return view;
 
 
-        // View view =  inflater.inflate(R.layout.fragment_sobre, container, false);
-        //return  view;
     }
 }
