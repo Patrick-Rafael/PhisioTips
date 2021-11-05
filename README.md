@@ -31,6 +31,23 @@ Esse app tem por objetivo ajudar a todas as pessoas com duvidadas sobre Academia
 ## Tela sobre o aplicativo
 <img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Pagina_sobre.jpeg" width="230" height="486" >
 
+## Tela de login 2.0
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/login.jpeg" width="230" height="486">
+
+## Tela de cadastro 2.0
+<img src = "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/cadastro.jpeg" width="230" height="486">
+
+## Tela do feed 2.0
+<img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/feed.jpeg" width="230" height="486">
+
+
+## Tela dos coméntarios e adicionando eles 2.0
+<img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/adicionar.jpeg" width="230" height="486"> <img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/comentarios.jpeg" width="230" height="486">
+
+## Tela Sobre o aplicativo 
+<img src= "https://github.com/Patrick-Rafael/Imagens_dos_Apps/blob/master/Mudanças%20visuais/sobre.jpeg" width="230" height="486">
+
+
  
  
 ### Tecnologias Usadas
