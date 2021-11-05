@@ -92,7 +92,7 @@ public class ActivityCadastro extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
 
-                    String idUsuario = Base64Custon.codificarBase64(usuario.getEmail());
+                    String idUsuario = task.getResult().getUser().getUid(); // Base64Custon.codificarBase64(usuario.getEmail());
                     usuario.setIdUsuario(idUsuario);
                     usuario.salvar();
                     levarLogin();

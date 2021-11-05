@@ -9,7 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.phisiotips.R;
+import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
 import com.example.phisiotips.activity.activity.model.Respostas;
+import com.example.phisiotips.activity.activity.model.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -17,10 +23,14 @@ public class AdapterComentarios extends RecyclerView.Adapter<AdapterComentarios.
 
     private List<Respostas> listaRespostas;
 
+
+
+
     public AdapterComentarios(List<Respostas> listaRespostas) {
         this.listaRespostas = listaRespostas;
 
     }
+
 
 
     public MyViewHolderComentarios onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -32,16 +42,22 @@ public class AdapterComentarios extends RecyclerView.Adapter<AdapterComentarios.
         return new MyViewHolderComentarios(comentarioLista);
     }
 
+
     @Override
     public void onBindViewHolder(AdapterComentarios.MyViewHolderComentarios holder, int position) {
 
         Respostas respostas = listaRespostas.get(position);
 
-
         holder.comentarios.setText(respostas.getResposta());
+
+        holder.nomeComentario.setText(respostas.getUsuario());
+
+
 
 
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -50,15 +66,19 @@ public class AdapterComentarios extends RecyclerView.Adapter<AdapterComentarios.
 
     public class MyViewHolderComentarios extends RecyclerView.ViewHolder {
 
-        TextView comentarios;
+        TextView comentarios, nomeComentario;
+
 
         public MyViewHolderComentarios(View itemView) {
             super(itemView);
 
             comentarios = itemView.findViewById(R.id.textComentario);
+            nomeComentario = itemView.findViewById(R.id.textNomeComentario);
+
 
         }
     }
+
 
 
 }

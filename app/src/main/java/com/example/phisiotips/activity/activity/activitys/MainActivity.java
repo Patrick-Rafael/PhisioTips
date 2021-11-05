@@ -37,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ClickRecycler {
 
 
     private FirebaseAuth autenticacao;
@@ -77,70 +77,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Configurar Adater
-        Adapter adapter = new Adapter(listaEnquete);
+        Adapter adapter = new Adapter(listaEnquete, this);
 
 
         //Configurar RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewMain.setLayoutManager(layoutManager);
         recyclerViewMain.setHasFixedSize(true);
-        //recyclerViewMain.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
+        recyclerViewMain.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
         recyclerViewMain.setAdapter(adapter);
 
-        //Evento de Click
-        recyclerViewMain.addOnItemTouchListener(
-                new ClickListener(
-                        getApplicationContext(),
-                        recyclerViewMain,
-                        new ClickListener.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-
-                                MainEnqutes enquetes = listaEnquete.get(position);
 
 
-                                Intent intent_comentarios = new Intent(MainActivity.this, ComentariosActivity.class);
-                                intent_comentarios.putExtra("Chave", enquetes.getChave());
-                                intent_comentarios.putExtra("Titulo",enquetes.getTitulo());
-                                startActivity(intent_comentarios);
-
-                            }
-
-
-                            @Override
-                            public void onLongItemClick(View view, int position) {
-
-                                MainEnqutes enquetes = listaEnquete.get(position);
-
-                                 Toast.makeText(
-                                        getApplicationContext(),
-                                        "Item precionado: " + enquetes.getTitulo(),
-                                        Toast.LENGTH_SHORT
-                                ).show();
-
-                            }
-
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                            }
-                        }
-
-                )
-        );
-
-
-
-
-
-        //Pegando do banco de dados e constroi a lista
+        //Pegando do banco de dados e constroindo a lista
         database = FirebaseDatabase.getInstance().getReference().child("Enquetes");
 
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                listaEnquete.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     MainEnqutes enquetes = dataSnapshot.getValue(MainEnqutes.class);
@@ -148,7 +104,10 @@ public class MainActivity extends AppCompatActivity {
                     //pegando chave
                    enquetes.setChave(dataSnapshot.getKey());
 
-                    listaEnquete.add(enquetes);
+
+                   listaEnquete.add(enquetes);
+
+
 
                 }
 
@@ -191,5 +150,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        MainEnqutes item = listaEnquete.get(position);
+
+        Intent intent_comentarios = new Intent(MainActivity.this, ComentariosActivity.class);
+        intent_comentarios.putExtra("Chave", item.getChave());
+        intent_comentarios.putExtra("Titulo",item.getTitulo());
+        startActivity(intent_comentarios);
+
+    }
+
+    @Override
+    public void onLongItemClick(int position) {
+
     }
 }

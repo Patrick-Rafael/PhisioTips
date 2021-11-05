@@ -6,9 +6,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ConfiguracaoFireBase {
 
-    //Retorna Instancuia do FireBaseDataBase
+    //Retorna Instancia do FireBaseDataBase
 
     private static DatabaseReference firebase;
+    private static DatabaseReference referenciaFirebase;
 
     public static DatabaseReference getFirebaseDataBase(){
         if(firebase == null){
@@ -27,5 +28,12 @@ public class ConfiguracaoFireBase {
         }
         return autenticacao;
 
+    }
+
+    public static DatabaseReference getFirebase(){
+        if( referenciaFirebase == null ){
+            referenciaFirebase = FirebaseDatabase.getInstance().getReference();
+        }
+        return referenciaFirebase;
     }
 }

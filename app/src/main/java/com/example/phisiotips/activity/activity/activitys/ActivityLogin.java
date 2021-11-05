@@ -42,6 +42,7 @@ public class ActivityLogin extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
+
         verificarUsuarioLogado();
 
         textCadastro = findViewById(R.id.textCadastro);

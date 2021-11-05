@@ -6,14 +6,17 @@ public class MainEnqutes {
     String resumo;
     String chave;
 
+
     public MainEnqutes(){
 
     }
 
-    public MainEnqutes(String titulo, String resumo) {
+    public MainEnqutes(String titulo, String resumo,String id) {
         this.titulo = titulo;
         this.resumo = resumo;
+
     }
+
 
     public String getTitulo() {
         return titulo;

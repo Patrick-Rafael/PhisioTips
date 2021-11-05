@@ -1,13 +1,33 @@
 package com.example.phisiotips.activity.activity.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Enquetes {
 
     String titulo;
     String resumo;
+    String autor;
 
-    public Enquetes(String titulo, String resumo) {
+
+    public Enquetes(String titulo, String resumo, String autor) {
         this.titulo = titulo;
         this.resumo = resumo;
+        this.autor = autor;
+
+
+    }
+
+    public Enquetes() {
+    }
+
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getTitulo() {

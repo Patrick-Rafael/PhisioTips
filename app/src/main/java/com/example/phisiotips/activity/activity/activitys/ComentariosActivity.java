@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,10 +19,18 @@ import android.widget.Toast;
 import com.example.phisiotips.R;
 import com.example.phisiotips.activity.activity.adpter.Adapter;
 import com.example.phisiotips.activity.activity.adpter.AdapterComentarios;
+import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
+import com.example.phisiotips.activity.activity.helper.Base64Custon;
+import com.example.phisiotips.activity.activity.model.Enquetes;
 import com.example.phisiotips.activity.activity.model.MainEnqutes;
 import com.example.phisiotips.activity.activity.model.Respostas;
+import com.example.phisiotips.activity.activity.model.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,13 +43,19 @@ import java.util.List;
 public class ComentariosActivity extends AppCompatActivity {
 
     private RecyclerView recyclerComentarios;
-    //private FloatingActionButton buttonComentarios;
     private List<Respostas> listaRespostas = new ArrayList<>();
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference comentarioReferenica;
-    private TextView titulo;
+    private TextView titulo, nome;
     private ImageButton buttonEnviar;
     private TextInputEditText textComentario;
+    private DatabaseReference usuarioRef;
+    private ValueEventListener valueEventListenerUsuario;
+    private Usuario usuario;
+    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+    private DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebaseDataBase();
+
+
 
 
     @Override
@@ -48,6 +63,7 @@ public class ComentariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comentarios);
 
+        recuperarUsuario();
         ids();
 
 
@@ -56,24 +72,38 @@ public class ComentariosActivity extends AppCompatActivity {
         String chave = bundle.getString("Chave");
         String textTitulo = bundle.getString("Titulo");
 
-        Log.i("texte", "chave: " + chave);
+        //Log.i("texte", "chave: " + chave);
+
+
+        //Recupera Enquete
+
+        usuarioRef = fireBaseRef.child("Enquetes").child(chave);
+
+        valueEventListenerUsuario = usuarioRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Enquetes enquetes = snapshot.getValue(Enquetes.class);
+
+                nome.setText(enquetes.getAutor());
+                //Log.i("teste","nome: " + nome);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         //Encaminhar para o nó do FireBase
         comentarioReferenica = FirebaseDatabase.getInstance().getReference().child("Enquetes").child(chave).child("Resposta");
 
+
         //Pegando Titulo da postagem
         titulo.setText(textTitulo);
 
-
-
-        //Enviar para activity de adicionar comentarios
-        /*buttonComentarios.setOnClickListener(v -> {
-            Intent intent = new Intent(ComentariosActivity.this, AdicionarComentariosActivity.class);
-            intent.putExtra("chave", chave);
-            startActivity(intent);
-
-        });*/
 
         //Envia o comentario
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +116,7 @@ public class ComentariosActivity extends AppCompatActivity {
         });
 
 
-
+        //recuperaResumo();
         recyclerComentarios = findViewById(R.id.recyclerComentarios);
 
         //Configurar adapter
@@ -116,7 +146,6 @@ public class ComentariosActivity extends AppCompatActivity {
 
                     listaRespostas.add(respostas);
 
-
                 }
 
                 adapterComentarios.notifyDataSetChanged();
@@ -130,6 +159,7 @@ public class ComentariosActivity extends AppCompatActivity {
         });
 
 
+
     }
 
 
@@ -138,9 +168,12 @@ public class ComentariosActivity extends AppCompatActivity {
 
         String resposta = textComentario.getText().toString();
 
+
+
         if (!resposta.isEmpty()) {
 
             Respostas respostas = new Respostas(resposta);
+            respostas.setUsuario(usuario.getNome());
 
             comentarioReferenica.push().setValue(respostas);
 
@@ -154,12 +187,33 @@ public class ComentariosActivity extends AppCompatActivity {
     }
 
     public void ids() {
-        //buttonComentarios = findViewById(R.id.buttonComentario);
         titulo = findViewById(R.id.titulo);
         buttonEnviar = findViewById(R.id.buttonEnvivarTeste);
         textComentario = findViewById(R.id.textComentarioTeste);
-
+        nome = findViewById(R.id.textNomeUsuario);
     }
 
+
+    private void recuperarUsuario(){
+
+        String idUsuario = autenticacao.getCurrentUser().getUid();
+
+        database = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(idUsuario);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                usuario = snapshot.getValue(Usuario.class);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 }
