@@ -52,8 +52,8 @@ public class ComentariosActivity extends AppCompatActivity {
     private DatabaseReference usuarioRef;
     private ValueEventListener valueEventListenerUsuario;
     private Usuario usuario;
-    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebaseDataBase();
+    private final FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+    private final DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebaseDataBase();
 
 
 
@@ -85,6 +85,7 @@ public class ComentariosActivity extends AppCompatActivity {
 
                 Enquetes enquetes = snapshot.getValue(Enquetes.class);
 
+                assert enquetes != null;
                 nome.setText(enquetes.getAutor());
                 //Log.i("teste","nome: " + nome);
 

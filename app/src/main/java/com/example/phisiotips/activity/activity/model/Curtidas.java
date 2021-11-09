@@ -1,5 +1,7 @@
 package com.example.phisiotips.activity.activity.model;
 
+import android.util.Log;
+
 import com.example.phisiotips.activity.activity.config.ConfiguracaoFireBase;
 import com.google.firebase.database.DatabaseReference;
 
@@ -16,7 +18,7 @@ public class Curtidas {
     }
 
     public void salvar(){
-        DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebaseDataBase();
+        DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebase();
 
         //Objeto para o usuario
         HashMap<String, Object> dadosUsuario = new HashMap<>();
@@ -27,7 +29,6 @@ public class Curtidas {
                 .child("enquete-curtida")
                 .child(enquete.getChave())// id da enquete
                 .child(usuario.getIdUsuario());//id do usuario
-
         pCurtidasRef.setValue(dadosUsuario);
 
         //atualizar curtidas
@@ -36,39 +37,36 @@ public class Curtidas {
 
     }
 
+    public void atualizarQuantidade (int valor){
+        DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebase();
+
+        DatabaseReference pCurtidasRef = fireBaseRef
+                .child("enquete-curtida")
+                .child(enquete.getChave())// id da enquete
+                .child("qtdCurtidas");
+        setQtdCurtidas(getQtdCurtidas()+ valor);
+        pCurtidasRef.setValue(getQtdCurtidas());
+
+
+    }
+
     public void remover(){
 
 
-        DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebaseDataBase();
-
-
+        DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebase();
 
         DatabaseReference pCurtidasRef = fireBaseRef
                 .child("enquete-curtida")
                 .child(enquete.getChave())// id da enquete
                 .child(usuario.getIdUsuario());//id do usuario
-
         pCurtidasRef.removeValue();
+        //Log.i("Teste","teste: " + usuario.getIdUsuario() );
 
         //atualizar curtidas
         atualizarQuantidade(-1);
 
 
     }
-
-    public void atualizarQuantidade (int valor){
-        DatabaseReference fireBaseRef = ConfiguracaoFireBase.getFirebaseDataBase();
-
-        DatabaseReference pCurtidasRef = fireBaseRef
-                .child("enquete-curtida")
-                .child(enquete.getChave())// id da enquete
-                .child("qtdCurtidas");
-        setQtdCurtidas(getQtdCurtidas() + valor);
-        pCurtidasRef.setValue(getQtdCurtidas());
-
-
-    }
-
 
 
 

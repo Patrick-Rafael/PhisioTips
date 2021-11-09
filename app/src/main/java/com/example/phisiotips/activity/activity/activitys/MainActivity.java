@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
                 autenticacao.signOut();
                 Intent intent_sair = new Intent(MainActivity.this, ActivityLogin.class);
                 startActivity(intent_sair);
+                finish();
                 return true;
 
             case R.id.menu_sobre:

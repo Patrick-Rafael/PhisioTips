@@ -35,9 +35,8 @@ import java.util.List;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
 
 
-
-    private List<MainEnqutes> listaEnquetes;
-    private ClickRecycler clickListener;
+    private final List<MainEnqutes> listaEnquetes;
+    private final ClickRecycler clickListener;
 
 
     public Adapter(List<MainEnqutes> lista, ClickRecycler clickListener) {
@@ -46,6 +45,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
 
     }
 
+    @NonNull
     public MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemLista = LayoutInflater.from(parent.getContext())
@@ -58,8 +58,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
     @Override
     public void onBindViewHolder(MyviewHolder holder, int position) {
 
-       final MainEnqutes enquete  = listaEnquetes.get( position );
-       final Usuario usuarioLogado = UsuarioFirebase.getDadosUsuarioLogado();
+        final MainEnqutes enquete = listaEnquetes.get(position);
+        final Usuario usuarioLogado = UsuarioFirebase.getDadosUsuarioLogado();
 
         holder.titulo.setText(enquete.getTitulo());
         holder.resumo.setText(enquete.getResumo());
@@ -74,25 +74,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
         curtidasRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 int qtdCurtidas = 0;
-                if(snapshot.hasChild("enquete-curtida")){
+
+
+                if (snapshot.hasChild("qtdCurtidas")) {
                     Curtidas curtida = snapshot.getValue(Curtidas.class);
+                    assert curtida != null;
                     qtdCurtidas = curtida.getQtdCurtidas();
 
                 }
 
+                Log.i("teste", "teste: " + qtdCurtidas);
+
+
                 //Verificação se já foi clicado
-                if(snapshot.hasChild(usuarioLogado.getIdUsuario())){
+                if (snapshot.hasChild(usuarioLogado.getIdUsuario())) {
                     holder.likeButton.setLiked(true);
 
-
-                }else{
+                } else {
                     holder.likeButton.setLiked(false);
 
                 }
-
-
-
 
 
                 //Montar objeto curtida
@@ -107,14 +110,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
                     @Override
                     public void liked(LikeButton likeButton) {
                         curtidas.salvar();
-                        holder.qtdCurtidas.setText( curtidas.getQtdCurtidas() + " curtidas" );
+                        holder.qtdCurtidas.setText(curtidas.getQtdCurtidas() + " curtidas");
+
 
                     }
 
                     @Override
                     public void unLiked(LikeButton likeButton) {
                         curtidas.remover();
-                        holder.qtdCurtidas.setText( curtidas.getQtdCurtidas() + " curtidas" );
+                        holder.qtdCurtidas.setText(curtidas.getQtdCurtidas() + " curtidas");
 
                     }
                 });
@@ -140,7 +144,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
 
-        TextView titulo,resumo,qtdCurtidas;
+        TextView titulo, resumo, qtdCurtidas;
 
         LikeButton likeButton;
 
@@ -159,7 +163,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyviewHolder> {
                     clickListener.onItemClick(getAdapterPosition());
                 }
             });
-
 
 
         }
