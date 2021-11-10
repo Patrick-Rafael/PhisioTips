@@ -3,6 +3,7 @@ package com.example.phisiotips.activity.activity.activitys;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -119,6 +120,7 @@ public class ComentariosActivity extends AppCompatActivity {
 
         //recuperaResumo();
         recyclerComentarios = findViewById(R.id.recyclerComentarios);
+
 
         //Configurar adapter
         AdapterComentarios adapterComentarios = new AdapterComentarios(listaRespostas);

@@ -3,9 +3,11 @@ package com.example.phisiotips.activity.activity.activitys;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
+
 public class MainActivity extends AppCompatActivity implements ClickRecycler {
 
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private List<MainEnqutes> listaEnquete = new ArrayList<>();
     private FloatingActionButton buttonAdicionar;
+    private AlertDialog alertDialog;
 
 
     @Override
@@ -53,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
         setContentView(R.layout.activity_main);
 
         autenticacao = FirebaseAuth.getInstance();
-
 
         //Redireciona para a pagina de adiconar
         buttonAdicionar = findViewById(R.id.buttonAdicionar);
@@ -68,11 +72,9 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
         });
 
 
-
-
         recyclerViewMain = findViewById(R.id.recyclerViewMain);
 
-
+        //swipe();
         //Configurar Adater
         Adapter adapter = new Adapter(listaEnquete, this);
 
@@ -85,8 +87,16 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
         recyclerViewMain.setAdapter(adapter);
 
 
-
         //Pegando do banco de dados e constroindo a lista
+        //Fazendo a dialog de Loadding screen
+        alertDialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage("Carregando")
+                .setCancelable(false)
+                .build();
+        alertDialog.show();
+
+
         database = FirebaseDatabase.getInstance().getReference().child("Enquetes");
 
 
@@ -99,13 +109,11 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
                     MainEnqutes enquetes = dataSnapshot.getValue(MainEnqutes.class);
 
                     //pegando chave
-                   enquetes.setChave(dataSnapshot.getKey());
+                    enquetes.setChave(dataSnapshot.getKey());
 
 
-                   listaEnquete.add(enquetes);
-
-
-
+                    listaEnquete.add(enquetes);
+                    alertDialog.dismiss();
                 }
 
                 adapter.notifyDataSetChanged();
@@ -119,6 +127,32 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
 
 
     }
+
+    /*ublic void swipe(){
+
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                int dragFlags = ItemTouchHelper.ACTION_STATE_IDLE;
+                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+                return makeMovementFlags(dragFlags,swipeFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+
+
+            }
+        };
+
+        new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerViewMain);
+    }*/
 
     //Infla o menu na action Bar
 
@@ -150,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onItemClick(int position) {
 
@@ -157,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
 
         Intent intent_comentarios = new Intent(MainActivity.this, ComentariosActivity.class);
         intent_comentarios.putExtra("Chave", item.getChave());
-        intent_comentarios.putExtra("Titulo",item.getTitulo());
+        intent_comentarios.putExtra("Titulo", item.getTitulo());
         startActivity(intent_comentarios);
 
     }
@@ -166,4 +201,5 @@ public class MainActivity extends AppCompatActivity implements ClickRecycler {
     public void onLongItemClick(int position) {
 
     }
+
 }

@@ -136,8 +136,8 @@ public class ActivityLogin extends AppCompatActivity {
 
     public void abrirPrincipal() {
         Intent intent = new Intent(ActivityLogin.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+       this.startActivity(intent);
+       this.finish();
 
     }
 
